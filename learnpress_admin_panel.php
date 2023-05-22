@@ -1,5 +1,5 @@
 <?php
-
+
 add_action('admin_menu', 'learnpress_registration_approval_add_menu', 99);
 
 
