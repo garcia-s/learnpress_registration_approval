@@ -68,10 +68,11 @@ add_action('admin_init', 'learnpress_registration_approval_process_action');
 // Process action callback
 function learnpress_registration_approval_process_action($user_id)
 {
-    echo($_GET["action"]);
-    die();
+
     if (isset($_GET['action']) && current_user_can('manage_options')) {
 
+        echo ($_GET["action"]);
+        die();
         $action = $_GET['action'];
 
         if ($action === 'approve') {
