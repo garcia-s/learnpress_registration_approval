@@ -8,7 +8,8 @@
  * Author URI: github.com/garcia-s
  * License: [License]
  */
-require_once("./learnpress_admin_panel.php");
+require_once(plugin_dir_path(__FILE__) . "learnpress_admin_panel.php");
+
 
 if (!defined('ABSPATH')) {
     exit;
