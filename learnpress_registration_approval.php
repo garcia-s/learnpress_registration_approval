@@ -8,26 +8,30 @@
  * Author URI: github.com/garcia-s
  * License: [License]
  */
+require_once("./learnpress_admin_panel.php");
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-register_activation_hook(__FILE__, 'learnpress_registration_approval_activate');
 
-function learnpress_registration_approval_activate()
+add_action('learn_press_before_register_user', 'learnpress_registration_approval_check');
+
+function learnpress_registration_approval_check($user_id)
 {
+    $approval_status = 'pending';
+    update_user_meta($user_id, 'learnpress_registration_approval_status', $approval_status);
+    wp_redirect(home_url('/pending-approval'));
+    exit;
 }
 
-register_deactivation_hook(__FILE__, 'learnpress_registration_approval_deactivate');
 
-function learnpress_registration_approval_deactivate()
+add_action('learn_press_course_access_before', 'learnpress_registration_approval_access_check');
+function learnpress_registration_approval_access_check($user_id, $course_id)
 {
+    $approval_status = get_user_meta($user_id, 'learnpress_registration_approval_status', true);
+    if ($approval_status !== 'approved') {
+        wp_redirect(home_url('/access-denied'));
+        exit;
+    }
 }
-
-
-
-
-
-
-
