@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: LearnPress Registration Approval
  * Plugin URI: github.com/garcia-s/learnpress_registration_approval
@@ -15,28 +16,21 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function create_custom_roles() {
+function create_custom_roles()
+{
     $pendingRole = 'pending_user';
     $pendingDN = 'Pending User';
-    
+
     $deniedRole = 'denied';
     $deniedDN = "Blocked User";
 
-    if ( ! get_role( $pendingRole)) {
-        add_role( $pendingRole, $pendingDN, array() );
+    if (!get_role($pendingRole)) {
+        add_role($pendingRole, $pendingDN, array());
     }
 
-    if ( ! get_role( $denied)) {
-        add_role($deniedRole, $deniedDN, array() );
+    if (!get_role($denied)) {
+        add_role($deniedRole, $deniedDN, array());
     }
 }
-add_action( 'init', 'create_custom_roles' );
+add_action('init', 'create_custom_roles');
 
-
-function set_pending_user_as_default_role($user, $user_email)
-{
-    $default_role = 'pending_user'; // Set your custom role slug here
-    $user['role'] = $default_role;
-    return $user;
-}
-add_filter('user_registration_email', 'set_pending_user_as_default_role', 10, 2);
