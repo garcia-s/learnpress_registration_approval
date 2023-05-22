@@ -66,14 +66,11 @@ function learnpress_registration_approval_admin_page()
 add_action('admin_init', 'learnpress_registration_approval_process_action');
 
 // Process action callback
-function learnpress_registration_approval_process_action()
+function learnpress_registration_approval_process_action($user_id, $action)
 {
     // Check if the action is set and the user has the required capability
-    echo("Reached");
-    die();
     if (isset($_GET['action']) && current_user_can('manage_options')) {
 
-        $action = $_GET['action'];
 
         if ($action === 'approve') {
             $user = new WP_User($user_id);
