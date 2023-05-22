@@ -6,6 +6,8 @@ add_action('admin_menu', 'learnpress_registration_approval_add_menu', 99);
 // Register admin menu callback
 function learnpress_registration_approval_add_menu()
 {
+    echo("HELLO");
+    die();
     add_submenu_page(
         'learn_press',
         'Registration Approval',
