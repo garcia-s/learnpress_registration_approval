@@ -69,11 +69,10 @@ add_action('admin_init', 'learnpress_registration_approval_process_action');
 function learnpress_registration_approval_process_action($user_id)
 {
 
-    if (isset($_GET['action']) && current_user_can('manage_options')) {
+    if (isset($_GET['action']) && isset($_GET['user_id']) && current_user_can('manage_options')) {
 
-        echo ($user_id);
-        die();
         $action = $_GET['action'];
+        $user_id = $_GET['user_id'];
 
         if ($action === 'approve') {
             $user = new WP_User($user_id);
