@@ -69,7 +69,10 @@ add_action('admin_init', 'learnpress_registration_approval_process_action');
 function learnpress_registration_approval_process_action()
 {
     // Check if the action is set and the user has the required capability
+    echo("Reached");
+    die();
     if (isset($_GET['action']) && current_user_can('manage_options')) {
+
         $action = $_GET['action'];
 
         if ($action === 'approve') {
