@@ -71,7 +71,7 @@ function learnpress_registration_approval_process_action($user_id)
 
     if (isset($_GET['action']) && current_user_can('manage_options')) {
 
-        echo ($_GET["action"]);
+        echo ($user_id);
         die();
         $action = $_GET['action'];
 
